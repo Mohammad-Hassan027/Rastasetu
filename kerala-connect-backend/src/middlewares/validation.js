@@ -156,6 +156,15 @@ const validateCreateComment = [
   handleValidationErrors
 ];
 
+const validateUpdateComment = [
+  body('content')
+    .trim()
+    .isLength({ min: 1, max: 500 })
+    .withMessage('Comment must be between 1 and 500 characters'),
+  
+  handleValidationErrors
+];
+
 // Place validation rules
 const validateCreatePlace = [
   body('name')
@@ -311,6 +320,36 @@ const validateSearchQuery = [
   handleValidationErrors
 ];
 
+const validateRating = [
+  body('rating')
+    .isInt({ min: 1, max: 5 })
+    .withMessage('Rating must be between 1 and 5'),
+  
+  body('review')
+    .optional()
+    .trim()
+    .isLength({ max: 500 })
+    .withMessage('Review cannot exceed 500 characters'),
+  
+  handleValidationErrors
+];
+
+const validateRedemptionUsage = [
+  body('usedBy')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage('Used by field must be between 2 and 100 characters'),
+  
+  body('notes')
+    .optional()
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage('Notes cannot exceed 200 characters'),
+  
+  handleValidationErrors
+];
+
 module.exports = {
   handleValidationErrors,
   validateSignup,
@@ -319,10 +358,13 @@ module.exports = {
   validateCreatePost,
   validateUpdatePost,
   validateCreateComment,
+  validateUpdateComment,
   validateCreatePlace,
   validateCreateCoupon,
   validateObjectId,
   validatePagination,
   validateLocationQuery,
-  validateSearchQuery
+  validateSearchQuery,
+  validateRating,
+  validateRedemptionUsage
 };
