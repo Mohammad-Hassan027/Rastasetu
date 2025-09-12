@@ -1,4 +1,4 @@
 # Rastasetu
+## Kerala Trails – short, memorable, travel-focused.
 
-## Slogan :
-Discover the Colors of God’s Own Country.
+## Slogan : Where Every Journey Counts
