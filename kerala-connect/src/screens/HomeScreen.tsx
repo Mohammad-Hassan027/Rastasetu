@@ -101,7 +101,7 @@ const HomeScreen: React.FC = () => {
 
   const renderEmpty = () => (
     <View style={styles.emptyContainer}>
-      <Icon name=\"images-outline\" size={48} color={colors.textSecondary} />
+      <Icon name="images-outline" size={48} color={colors.textSecondary} />
       <Text style={styles.emptyTitle}>No Posts Yet</Text>
       <Text style={styles.emptySubtitle}>
         Start following users or create your first post!

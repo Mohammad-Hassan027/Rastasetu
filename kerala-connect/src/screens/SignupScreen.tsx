@@ -92,8 +92,8 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={formData.fullName}
             onChangeText={(value) => handleInputChange('fullName', value)}
-            placeholder=\"Enter your full name\"
-            autoCapitalize=\"words\"
+            placeholder="Enter your full name"
+            autoCapitalize="words"
           />
         </View>
 
@@ -103,8 +103,8 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={formData.username}
             onChangeText={(value) => handleInputChange('username', value)}
-            placeholder=\"Choose a username\"
-            autoCapitalize=\"none\"
+            placeholder="Choose a username"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>
@@ -115,9 +115,9 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={formData.email}
             onChangeText={(value) => handleInputChange('email', value)}
-            placeholder=\"Enter your email\"
-            keyboardType=\"email-address\"
-            autoCapitalize=\"none\"
+            placeholder="Enter your email"
+            keyboardType="email-address"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>
@@ -128,9 +128,9 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={formData.password}
             onChangeText={(value) => handleInputChange('password', value)}
-            placeholder=\"Create a password\"
+            placeholder="Create a password"
             secureTextEntry
-            autoCapitalize=\"none\"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>
@@ -141,9 +141,9 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={formData.confirmPassword}
             onChangeText={(value) => handleInputChange('confirmPassword', value)}
-            placeholder=\"Confirm your password\"
+            placeholder="Confirm your password"
             secureTextEntry
-            autoCapitalize=\"none\"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>

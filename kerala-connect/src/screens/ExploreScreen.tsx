@@ -76,7 +76,7 @@ const ExploreScreen: React.FC = () => {
         </Text>
         <View style={styles.placeDetails}>
           <View style={styles.rating}>
-            <Icon name=\"star\" size={14} color={colors.accent} />
+            <Icon name="star\" size={14} color={colors.accent} />
             <Text style={styles.ratingText}>
               {item.rating} ({item.reviews} reviews)
             </Text>
@@ -155,23 +155,23 @@ const ExploreScreen: React.FC = () => {
             style={[styles.toggleButton, viewMode === 'list' && styles.toggleButtonActive]}
             onPress={() => setViewMode('list')}
           >
-            <Icon name=\"list-outline\" size={20} color={viewMode === 'list' ? colors.surface : colors.textSecondary} />
+            <Icon name="list-outline" size={20} color={viewMode === 'list' ? colors.surface : colors.textSecondary} />
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toggleButton, viewMode === 'map' && styles.toggleButtonActive]}
             onPress={() => setViewMode('map')}
           >
-            <Icon name=\"map-outline\" size={20} color={viewMode === 'map' ? colors.surface : colors.textSecondary} />
+            <Icon name="map-outline" size={20} color={viewMode === 'map' ? colors.surface : colors.textSecondary} />
           </TouchableOpacity>
         </View>
       </View>
 
       {/* Search Bar */}
       <View style={styles.searchContainer}>
-        <Icon name=\"search-outline\" size={20} color={colors.textSecondary} />
+        <Icon name="search-outline" size={20} color={colors.textSecondary} />
         <TextInput
           style={styles.searchInput}
-          placeholder=\"Search places in Kerala...\"
+          placeholder="Search places in Kerala..."
           value={searchQuery}
           onChangeText={setSearchQuery}
         />

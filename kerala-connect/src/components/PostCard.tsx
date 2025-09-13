@@ -57,7 +57,7 @@ const PostCard: React.FC<Props> = ({ post, onLike }) => {
           <Image
             source={{ uri: post.images[0] }}
             style={styles.postImage}
-            resizeMode=\"cover\"
+            resizeMode="cover"
           />
           {post.images.length > 1 && (
             <View style={styles.imageCounter}>
@@ -72,7 +72,7 @@ const PostCard: React.FC<Props> = ({ post, onLike }) => {
       {/* Location */}
       {post.location && (
         <View style={styles.locationContainer}>
-          <Icon name=\"location-outline\" size={16} color={colors.textSecondary} />
+          <Icon name="location-outline" size={16} color={colors.textSecondary} />
           <Text style={styles.locationText}>{post.location.name}</Text>
         </View>
       )}
@@ -92,12 +92,12 @@ const PostCard: React.FC<Props> = ({ post, onLike }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.actionButton}>
-          <Icon name=\"chatbubble-outline\" size={24} color={colors.textSecondary} />
+          <Icon name="chatbubble-outline" size={24} color={colors.textSecondary} />
           <Text style={styles.actionText}>{post.comments}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.actionButton}>
-          <Icon name=\"share-outline\" size={24} color={colors.textSecondary} />
+          <Icon name="share-outline" size={24} color={colors.textSecondary} />
         </TouchableOpacity>
       </View>
     </View>

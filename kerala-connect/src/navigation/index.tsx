@@ -44,10 +44,10 @@ const MainTabNavigator: React.FC = () => {
         headerShown: false,
       })}
     >
-      <Tab.Screen name=\"Home\" component={HomeScreen} />
-      <Tab.Screen name=\"Explore\" component={ExploreScreen} />
-      <Tab.Screen name=\"Coupons\" component={CouponsScreen} />
-      <Tab.Screen name=\"Profile\" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen name="Coupons" component={CouponsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 };
@@ -78,9 +78,9 @@ const RootNavigator: React.FC = () => {
       >
         {isLoggedIn ? (
           <>
-            <Stack.Screen name=\"MainTabs\" component={MainTabNavigator} />
+            <Stack.Screen name="MainTabs" component={MainTabNavigator} />
             <Stack.Screen 
-              name=\"CreatePost\" 
+              name="CreatePost" 
               component={CreatePostScreen}
               options={{
                 headerShown: true,
@@ -94,8 +94,8 @@ const RootNavigator: React.FC = () => {
           </>
         ) : (
           <>
-            <Stack.Screen name=\"Login\" component={LoginScreen} />
-            <Stack.Screen name=\"Signup\" component={SignupScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
           </>
         )}
       </Stack.Navigator>

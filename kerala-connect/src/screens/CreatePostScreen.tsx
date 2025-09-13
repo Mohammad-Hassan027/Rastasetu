@@ -35,8 +35,8 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleImagePicker = () => {
     const options = {
-      mediaType: 'photo' as MediaType,
-      quality: 0.8,
+      mediaType: "photo",
+      quality: "high",
       allowsEditing: true,
       selectionLimit: 5 - selectedImages.length, // Limit total to 5 images
     };
@@ -127,7 +127,7 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
         style={styles.removeImageButton}
         onPress={() => removeImage(index)}
       >
-        <Icon name=\"close-circle\" size={24} color={colors.error} />
+        <Icon name="close-circle" size={24} color={colors.error} />
       </TouchableOpacity>
     </View>
   );
@@ -140,12 +140,12 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.contentInput}
-              placeholder=\"What's on your mind? Share your Kerala travel experience...\"
+              placeholder="What's on your mind? Share your Kerala travel experience..."
               placeholderTextColor={colors.textSecondary}
               value={content}
               onChangeText={setContent}
               multiline
-              textAlignVertical=\"top\"
+              textAlignVertical="top"
             />
           </View>
 
@@ -164,10 +164,10 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
           {/* Location Display */}
           {location && (
             <View style={styles.locationContainer}>
-              <Icon name=\"location\" size={20} color={colors.primary} />
+              <Icon name="location" size={20} color={colors.primary} />
               <Text style={styles.locationText}>{location.name}</Text>
               <TouchableOpacity onPress={removeLocation}>
-                <Icon name=\"close-circle-outline\" size={20} color={colors.textSecondary} />
+                <Icon name="close-circle-outline" size={20} color={colors.textSecondary} />
               </TouchableOpacity>
             </View>
           )}
@@ -179,7 +179,7 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
               onPress={handleImagePicker}
               disabled={selectedImages.length >= 5}
             >
-              <Icon name=\"camera-outline\" size={24} color={colors.primary} />
+              <Icon name="camera-outline" size={24} color={colors.primary} />
               <Text style={styles.actionButtonText}>
                 Photos ({selectedImages.length}/5)
               </Text>
@@ -189,7 +189,7 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
               style={styles.actionButton}
               onPress={handleAddLocation}
             >
-              <Icon name=\"location-outline\" size={24} color={colors.primary} />
+              <Icon name="location-outline" size={24} color={colors.primary} />
               <Text style={styles.actionButtonText}>
                 {location ? 'Change Location' : 'Add Location'}
               </Text>

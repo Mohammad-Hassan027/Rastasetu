@@ -95,7 +95,7 @@ const ProfileScreen: React.FC = () => {
     >
       <Icon name={icon} size={24} color={textColor} />
       <Text style={[styles.menuOptionText, { color: textColor }]}>{title}</Text>
-      <Icon name=\"chevron-forward-outline\" size={20} color={colors.textSecondary} />
+      <Icon name="chevron-forward-outline" size={20} color={colors.textSecondary} />
     </TouchableOpacity>
   );
 
@@ -121,7 +121,7 @@ const ProfileScreen: React.FC = () => {
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.settingsButton}>
-            <Icon name=\"settings-outline\" size={24} color={colors.text} />
+            <Icon name="settings-outline" size={24} color={colors.text} />
           </TouchableOpacity>
         </View>
 
@@ -144,52 +144,52 @@ const ProfileScreen: React.FC = () => {
 
         {/* Stats */}
         <View style={styles.statsSection}>
-          <StatCard title=\"Posts\" value={0} icon=\"images-outline\" />
-          <StatCard title=\"Followers\" value={user.followers} icon=\"people-outline\" />
-          <StatCard title=\"Following\" value={user.following} icon=\"person-add-outline\" />
-          <StatCard title=\"Points\" value={user.points} icon=\"star-outline\" />
+          <StatCard title="Posts" value={0} icon="images-outline\" />
+          <StatCard title="Followers" value={user.followers} icon="people-outline" />
+          <StatCard title="Following" value={user.following} icon="person-add-outline" />
+          <StatCard title="Points" value={user.points} icon="star-outline" />
         </View>
 
         {/* Menu Options */}
         <View style={styles.menuSection}>
           <MenuOption
-            title=\"My Posts\"
-            icon=\"images-outline\"
+            title="My Posts"
+            icon="images-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Saved Places\"
-            icon=\"bookmark-outline\"
+            title="Saved Places"
+            icon="bookmark-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Travel History\"
-            icon=\"map-outline\"
+            title="Travel History"
+            icon="map-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Notifications\"
-            icon=\"notifications-outline\"
+            title="Notifications"
+            icon="notifications-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Privacy Settings\"
-            icon=\"lock-closed-outline\"
+            title="Privacy Settings"
+            icon="lock-closed-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Help & Support\"
-            icon=\"help-circle-outline\"
+            title="Help & Support"
+            icon="help-circle-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"About Kerala Connect\"
-            icon=\"information-circle-outline\"
+            title="About Kerala Connect"
+            icon="information-circle-outline"
             onPress={() => {}}
           />
           <MenuOption
-            title=\"Logout\"
-            icon=\"log-out-outline\"
+            title="Logout"
+            icon="log-out-outline"
             onPress={handleLogout}
             showBorder={false}
             textColor={colors.error}

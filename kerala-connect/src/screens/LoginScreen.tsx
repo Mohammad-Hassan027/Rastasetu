@@ -66,9 +66,9 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={email}
             onChangeText={setEmail}
-            placeholder=\"Enter your email\"
-            keyboardType=\"email-address\"
-            autoCapitalize=\"none\"
+            placeholder="Enter your email"
+            keyboardType="email-address"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>
@@ -79,9 +79,9 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             style={commonStyles.input}
             value={password}
             onChangeText={setPassword}
-            placeholder=\"Enter your password\"
+            placeholder="Enter your password"
             secureTextEntry
-            autoCapitalize=\"none\"
+            autoCapitalize="none"
             autoCorrect={false}
           />
         </View>

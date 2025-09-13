@@ -97,7 +97,7 @@ const CouponsScreen: React.FC = () => {
           <Text style={styles.discountText}>{item.discount}</Text>
         </View>
         <View style={styles.pointsBadge}>
-          <Icon name=\"star\" size={14} color={colors.accent} />
+          <Icon name="star" size={14} color={colors.accent} />
           <Text style={styles.pointsText}>{item.pointsCost}</Text>
         </View>
       </View>
@@ -107,7 +107,7 @@ const CouponsScreen: React.FC = () => {
       
       <View style={styles.couponFooter}>
         <View style={styles.validityContainer}>
-          <Icon name=\"calendar-outline\" size={16} color={colors.textSecondary} />
+          <Icon name="calendar-outline" size={16} color={colors.textSecondary} />
           <Text style={styles.validityText}>Valid until {formatDate(item.validUntil)}</Text>
         </View>
         
@@ -146,7 +146,7 @@ const CouponsScreen: React.FC = () => {
       
       <View style={styles.couponFooter}>
         <View style={styles.validityContainer}>
-          <Icon name=\"calendar-outline\" size={16} color={colors.textSecondary} />
+          <Icon name="calendar-outline" size={16} color={colors.textSecondary} />
           <Text style={styles.validityText}>Valid until {formatDate(item.validUntil)}</Text>
         </View>
       </View>
@@ -197,7 +197,7 @@ const CouponsScreen: React.FC = () => {
         <Text style={styles.headerTitle}>Coupons & Rewards</Text>
         {user && (
           <View style={styles.pointsContainer}>
-            <Icon name=\"star\" size={20} color={colors.accent} />
+            <Icon name="star" size={20} color={colors.accent} />
             <Text style={styles.pointsValue}>{user.points}</Text>
           </View>
         )}
@@ -206,12 +206,12 @@ const CouponsScreen: React.FC = () => {
       {/* Tabs */}
       <View style={styles.tabContainer}>
         <TabButton
-          title=\"Available\"
+          title="Available"
           isActive={activeTab === 'available'}
           onPress={() => setActiveTab('available')}
         />
         <TabButton
-          title=\"My Coupons\"
+          title="My Coupons"
           isActive={activeTab === 'redeemed'}
           onPress={() => setActiveTab('redeemed')}
         />
