@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,94 +9,121 @@ import {
   Alert,
   StyleSheet,
   Platform,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackNavigationProp } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { launchImageLibrary, ImagePickerResponse, MediaType } from 'react-native-image-picker';
-import { RootStackParamList, CreatePostData } from '@/types';
-import ApiService from '@/services/api';
-import { commonStyles, colors, spacing, fontSize, borderRadius } from '@/styles/common';
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StackNavigationProp } from "@react-navigation/stack";
+import Icon from "react-native-vector-icons/Ionicons";
+import {
+  launchImageLibrary,
+  ImagePickerResponse,
+  MediaType,
+} from "react-native-image-picker"; // Ensure MediaType is imported
+import { RootStackParamList, CreatePostData } from "@/types";
+import ApiService from "@/services/api";
+import {
+  commonStyles,
+  colors,
+  spacing,
+  fontSize,
+  borderRadius,
+} from "@/styles/common";
 
-type CreatePostScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CreatePost'>;
+type CreatePostScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "CreatePost"
+>;
 
 interface Props {
   navigation: CreatePostScreenNavigationProp;
 }
 
 const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [location, setLocation] = useState<{
-    name: string;
-    coordinates: { latitude: number; longitude: number };
-  } | null>(null);
+  const [location, setLocation] = useState<
+    | {
+        name: string;
+        coordinates: { latitude: number; longitude: number };
+      }
+    | undefined
+  >(undefined); // ✅ Use undefined instead of null
+
   const [loading, setLoading] = useState(false);
 
   const handleImagePicker = () => {
     const options = {
-      mediaType: "photo",
-      quality: "high",
+      mediaType: "photo" as const, // ✅ Use string literal instead of MediaType.Photo
+      quality: 0.5 as const, // Changed from "high" to a number (0-1), as per ImagePickerOptions
       allowsEditing: true,
       selectionLimit: 5 - selectedImages.length, // Limit total to 5 images
     };
 
     launchImageLibrary(options, (response: ImagePickerResponse) => {
       if (response.didCancel || response.errorMessage) {
+        console.log("Image picker cancelled or error:", response.errorMessage);
         return;
       }
 
       if (response.assets) {
         const newImages = response.assets
-          .map(asset => asset.uri)
+          .map((asset) => asset.uri)
           .filter((uri): uri is string => uri !== undefined);
-        
-        setSelectedImages(prev => [...prev, ...newImages]);
+
+        setSelectedImages((prev) => [...prev, ...newImages]);
       }
     });
   };
 
   const removeImage = (index: number) => {
-    setSelectedImages(prev => prev.filter((_, i) => i !== index));
+    setSelectedImages((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleAddLocation = () => {
-    // For demo purposes, we'll add a static location
-    // In a real app, you'd use location services
     Alert.prompt(
-      'Add Location',
-      'Enter location name:',
-      (locationName) => {
-        if (locationName) {
-          setLocation({
-            name: locationName,
-            coordinates: {
-              latitude: 10.8505, // Kerala coordinates
-              longitude: 76.2711,
-            },
-          });
-        }
-      }
+      "Add Location",
+      "Enter location name:",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: (locationName) => {
+            if (locationName) {
+              setLocation({
+                name: locationName,
+                coordinates: {
+                  latitude: 10.8505, // Kerala coordinates
+                  longitude: 76.2711,
+                },
+              });
+            }
+          },
+        },
+      ],
+      "plain-text", // Required for Android to show text input
+      location?.name || "" // Pre-fill if location already exists
     );
   };
 
   const removeLocation = () => {
-    setLocation(null);
+    setLocation(undefined);
   };
 
   const handleCreatePost = async () => {
     if (!content.trim() && selectedImages.length === 0) {
-      Alert.alert('Error', 'Please add some content or images to your post.');
+      Alert.alert("Error", "Please add some content or images to your post.");
       return;
     }
 
     setLoading(true);
     try {
-      // Upload images first if any
       let uploadedImageUrls: string[] = [];
       if (selectedImages.length > 0) {
+        // In a real application, you'd likely display upload progress
         uploadedImageUrls = await Promise.all(
-          selectedImages.map(imageUri => ApiService.uploadImage(imageUri))
+          selectedImages.map((imageUri) => ApiService.uploadImage(imageUri))
         );
       }
 
@@ -107,14 +134,19 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
       };
 
       await ApiService.createPost(postData);
-      Alert.alert('Success', 'Post created successfully!', [
+      Alert.alert("Success", "Post created successfully!", [
         {
-          text: 'OK',
+          text: "OK",
           onPress: () => navigation.goBack(),
         },
       ]);
     } catch (error: any) {
-      Alert.alert('Error', error.response?.data?.error || 'Failed to create post. Please try again.');
+      console.error("Error creating post:", error);
+      Alert.alert(
+        "Error",
+        error.response?.data?.error ||
+          "Failed to create post. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -157,7 +189,9 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
               style={styles.imagePreviewContainer}
               contentContainerStyle={styles.imagePreviewContent}
             >
-              {selectedImages.map((uri, index) => renderImagePreview(uri, index))}
+              {selectedImages.map((uri, index) =>
+                renderImagePreview(uri, index)
+              )}
             </ScrollView>
           )}
 
@@ -167,7 +201,11 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
               <Icon name="location" size={20} color={colors.primary} />
               <Text style={styles.locationText}>{location.name}</Text>
               <TouchableOpacity onPress={removeLocation}>
-                <Icon name="close-circle-outline" size={20} color={colors.textSecondary} />
+                <Icon
+                  name="close-circle-outline"
+                  size={20}
+                  color={colors.textSecondary}
+                />
               </TouchableOpacity>
             </View>
           )}
@@ -191,7 +229,7 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
             >
               <Icon name="location-outline" size={24} color={colors.primary} />
               <Text style={styles.actionButtonText}>
-                {location ? 'Change Location' : 'Add Location'}
+                {location ? "Change Location" : "Add Location"}
               </Text>
             </TouchableOpacity>
           </View>
@@ -207,7 +245,7 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
             disabled={loading}
           >
             <Text style={commonStyles.buttonText}>
-              {loading ? 'Creating Post...' : 'Share Post'}
+              {loading ? "Creating Post..." : "Share Post"}
             </Text>
           </TouchableOpacity>
 
@@ -215,10 +253,10 @@ const CreatePostScreen: React.FC<Props> = ({ navigation }) => {
           <View style={styles.guidelinesContainer}>
             <Text style={styles.guidelinesTitle}>Posting Guidelines:</Text>
             <Text style={styles.guidelinesText}>
-              • Share authentic travel experiences from Kerala{'\n'}
-              • Be respectful to local communities and culture{'\n'}
-              • Avoid spam and promotional content{'\n'}
-              • Include relevant location tags to help other travelers
+              • Share authentic travel experiences from Kerala{"\n"}• Be
+              respectful to local communities and culture{"\n"}• Avoid spam and
+              promotional content{"\n"}• Include relevant location tags to help
+              other travelers
             </Text>
           </View>
         </View>
@@ -244,7 +282,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.md,
     color: colors.text,
     lineHeight: 22,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
     flex: 1,
   },
   imagePreviewContainer: {
@@ -254,7 +292,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xs,
   },
   imagePreview: {
-    position: 'relative',
+    position: "relative",
     marginRight: spacing.sm,
   },
   previewImage: {
@@ -264,15 +302,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.border,
   },
   removeImageButton: {
-    position: 'absolute',
+    position: "absolute",
     top: -8,
     right: -8,
     backgroundColor: colors.surface,
     borderRadius: 12,
   },
   locationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: colors.surface,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
@@ -284,7 +322,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.md,
     color: colors.text,
     marginLeft: spacing.sm,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   actionsContainer: {
     backgroundColor: colors.surface,
@@ -294,8 +332,8 @@ const styles = StyleSheet.create({
     ...commonStyles.shadow,
   },
   actionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.sm,
   },
@@ -303,7 +341,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.md,
     color: colors.text,
     marginLeft: spacing.sm,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   createButton: {
     marginBottom: spacing.xl,
@@ -319,7 +357,7 @@ const styles = StyleSheet.create({
   },
   guidelinesTitle: {
     fontSize: fontSize.md,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.text,
     marginBottom: spacing.sm,
   },
