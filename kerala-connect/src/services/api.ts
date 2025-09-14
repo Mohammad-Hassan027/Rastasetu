@@ -13,7 +13,7 @@ import {
   ApiResponse,
 } from '@/types';
 
-const BASE_URL = 'http://localhost:3000/api'; // Replace with your backend URL
+const BASE_URL = "https://localhost:3000/api"; // Replace with your backend URL
 
 class ApiService {
   private api: AxiosInstance;

@@ -1,5 +1,10 @@
 # Kerala Connect
 
+[![React Native](https://img.shields.io/badge/React%20Native-0.72.17-blue.svg)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.8.4-blue.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Mohammad-Hassan027/Rastasetu)](https://github.com/Mohammad-Hassan027/Rastasetu)
+
 A React Native tourism and social media platform where users can explore Kerala, share travel experiences, earn points, and redeem rewards.
 
 ## Features
@@ -27,6 +32,22 @@ A React Native tourism and social media platform where users can explore Kerala,
 - Redeem coupons and rewards
 - Track points and redemption history
 - Special offers for active users
+
+## Screenshots & Demo
+
+### App Preview
+<div align="center">
+  <img src="image.png" alt="Kerala Connect App Preview" width="300" />
+</div>
+
+> 📱 **Demo**: A live demo of the app will be available once deployed. Screenshots showcase the main interface and features.
+
+### Key Screens
+- **Home Feed**: Browse posts from fellow travelers
+- **Explore**: Discover trending places in Kerala
+- **Profile**: Manage your account and view statistics
+- **Coupons**: Redeem rewards with earned points
+- **Create Post**: Share your travel experiences
 
 ## Tech Stack
 
@@ -94,25 +115,56 @@ Before you begin, ensure you have the following installed:
 
 ## Installation
 
+> **⚠️ Important Note**: This project currently contains only the source code. You'll need to initialize the React Native project structure for Android and iOS platforms after cloning.
+
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd kerala-connect
+   git clone https://github.com/Mohammad-Hassan027/Rastasetu.git
+   cd Rastasetu/kerala-connect
    ```
 
-2. **Install dependencies**
+2. **Initialize React Native project structure**
+   ```bash
+   # Initialize React Native project with proper structure
+   npx react-native init KeralaConnectTemp --template react-native-template-typescript
+   
+   # Copy the generated android and ios folders to your project
+   cp -r KeralaConnectTemp/android .
+   cp -r KeralaConnectTemp/ios .
+   
+   # Clean up temporary project
+   rm -rf KeralaConnectTemp
+   ```
+
+3. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Install iOS dependencies** (macOS only)
+4. **Install iOS dependencies** (macOS only)
    ```bash
    cd ios && pod install && cd ..
    ```
 
-4. **Configure environment**
-   - Update the `BASE_URL` in `src/services/api.ts` to point to your backend server
-   - Set up Google Maps API key in Android/iOS configuration files
+5. **Configure environment variables**
+   
+   Create a `.env` file in the root directory:
+   ```bash
+   # API Configuration
+   REACT_NATIVE_API_BASE_URL=https://your-backend-api.com/api
+   
+   # Google Maps API Key
+   GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+   
+   # Optional: Environment
+   NODE_ENV=development
+   ```
+   
+   **Important**: Never commit your `.env` file to version control. Add it to `.gitignore`.
+
+6. **Update configuration files**
+   - Update the `BASE_URL` in `src/services/api.ts` to use your environment variable
+   - Configure Google Maps API key in platform-specific files
 
 ## Running the App
 
@@ -222,6 +274,43 @@ const BASE_URL = 'https://your-api-server.com/api';
 - Coupon redemption with point deduction
 - Point history and tracking
 
+## Project Status & Roadmap
+
+### Current Status: 🚧 In Development
+
+This project is currently under active development. Here's what's been implemented and what's planned:
+
+#### ✅ Completed Features
+- Basic project structure with TypeScript
+- Component architecture (PostCard, Screen components)
+- Navigation system with React Navigation v6
+- API service layer with Axios
+- Authentication flow (Login/Signup screens)
+- Social media screens (Home, Profile, Create Post)
+- Tourism exploration (Explore screen)
+- Rewards system (Coupons screen)
+- Type definitions and utilities
+
+#### 🚧 In Progress
+- Backend API integration
+- Google Maps integration for places
+- Image upload functionality
+- Points and rewards system logic
+- User authentication with JWT
+
+#### 🗓️ Planned Features
+- Real-time notifications
+- Offline support with local storage
+- Advanced search and filtering
+- Social sharing integration
+- Admin dashboard for content management
+- Multi-language support (Malayalam, English)
+- Dark mode theme
+- Analytics and user insights
+
+### Contribution Status
+This project is open for contributions! Check the [Contributing](#contributing) section for guidelines.
+
 ## Development
 
 ### Adding New Screens
@@ -275,10 +364,25 @@ const BASE_URL = 'https://your-api-server.com/api';
 
 This project is licensed under the MIT License.
 
-## Contact
+## Contact & Support
 
-For questions or support, please contact [Your Contact Information]
+For questions, support, or collaboration:
+
+- **GitHub**: [@Mohammad-Hassan027](https://github.com/Mohammad-Hassan027)
+- **Repository**: [Rastasetu](https://github.com/Mohammad-Hassan027/Rastasetu)
+- **Issues**: [Report bugs or request features](https://github.com/Mohammad-Hassan027/Rastasetu/issues)
+
+### Connect with the Community
+- Star ⭐ the repository if you find it helpful
+- Fork 🍴 and contribute to the project
+- Share 📢 with fellow developers and travel enthusiasts
 
 ---
 
-**Kerala Connect** - Discover Kerala, Connect with Travelers! 🌴
+<div align="center">
+  <h3>🌴 Kerala Connect - Discover Kerala, Connect with Travelers! 🌴</h3>
+  <p>Built with ❤️ for Kerala tourism and travel community</p>
+  
+  [![GitHub stars](https://img.shields.io/github/stars/Mohammad-Hassan027/Rastasetu?style=social)](https://github.com/Mohammad-Hassan027/Rastasetu/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/Mohammad-Hassan027/Rastasetu?style=social)](https://github.com/Mohammad-Hassan027/Rastasetu/network/members)
+</div>
